@@ -1,0 +1,552 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>API &mdash; ELLIE 1.0.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="ELLIE 1.0.0 documentation" href="index.html"/>
+        <link rel="prev" title="Documentation" href="index.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> ELLIE
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">API</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">ELLIE</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">ellie</a> &raquo;</li>
+      
+    
+      <li>API</li>
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="api">
+<h1>API<a class="headerlink" href="#api" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="ellie.find_sources">
+<em class="property">class </em><code class="descclassname">ellie.</code><code class="descname">find_sources</code><span class="sig-paren">(</span><em>tic=None</em>, <em>gaia=None</em>, <em>pos=None</em>, <em>multiFile=None</em>, <em>dir=None</em>, <em>camera=None</em>, <em>chip=None</em><span class="sig-paren">)</span><a class="headerlink" href="#ellie.find_sources" title="Permalink to this definition">¶</a></dt>
+<dd><p>The main interface to the ELLIE image extraction package</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>tic : The TESS Input Catalog identifier for the target in question (default: None)
+gaia: The Gaia identifier for the target in question (default: None)
+pos : The (RA, Dec) coordinates for the location in question (default: None)
+multiFile: Filename with either a list of TIC IDs, Gaia IDs, or RA,Dec position pairs (default:None)</dd>
+</dl>
+<dl class="method">
+<dt id="ellie.find_sources.cone_search">
+<code class="descname">cone_search</code><span class="sig-paren">(</span><em>r</em>, <em>service</em>, <em>multiPos=None</em><span class="sig-paren">)</span><a class="headerlink" href="#ellie.find_sources.cone_search" title="Permalink to this definition">¶</a></dt>
+<dd><p>Completes a cone search in the Gaia DR2 or TIC catalog
+Parameters
+———-</p>
+<blockquote>
+<div><p>r: radius of cone search [deg]
+service: identifies which MAST service to use. Either ‘Mast.Catalogs.GaiaDR2.Cone’</p>
+<blockquote>
+<div>or ‘Mast.Catalogs.Tic.Cone’ are acceptable inputs</div></blockquote>
+</div></blockquote>
+<blockquote>
+<div>table: table of sources found within cone of radius r
+See the Gaia &amp; TIC field documantation for more information on returned columns</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="ellie.find_sources.crossmatch_by_position">
+<code class="descname">crossmatch_by_position</code><span class="sig-paren">(</span><em>r</em>, <em>service</em>, <em>multiPos=None</em><span class="sig-paren">)</span><a class="headerlink" href="#ellie.find_sources.crossmatch_by_position" title="Permalink to this definition">¶</a></dt>
+<dd><p>Crossmatches [RA,Dec] position to a source in the Gaia DR2 catalog and TIC catalog
+Parameters
+———-</p>
+<blockquote>
+<div><p>pos: [RA,Dec] list
+r: radius of search for crossmatch
+service: identifies which catalog to crossmatch to. Either: ‘Mast.GaiaDR2.Crossmatch’</p>
+<blockquote>
+<div>or ‘Mast.Tic.Crossmatch’ are accepted</div></blockquote>
+<p>multiPos: used when user passes in list of IDs to crossmatch</p>
+</div></blockquote>
+<blockquote>
+<div>gaiaTable: table of crossmatch results in Gaia DR2
+ticTable : table of crossmatch results in TIC</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="ellie.find_sources.crossmatch_distance">
+<code class="descname">crossmatch_distance</code><span class="sig-paren">(</span><em>pos</em>, <em>match</em><span class="sig-paren">)</span><a class="headerlink" href="#ellie.find_sources.crossmatch_distance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds distance between source and crossmatched source(s)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ellie.find_sources.crossmatch_multi_to_gaia">
+<code class="descname">crossmatch_multi_to_gaia</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ellie.find_sources.crossmatch_multi_to_gaia" title="Permalink to this definition">¶</a></dt>
+<dd><p>Crossmatches file of TIC IDs to Gaia
+Parameters
+———-
+Returns
+———-</p>
+<blockquote>
+<div>table: table of gaia_id, tic_id, ra, dec, delta_pos, gmag, tmag, pmra, pmdec, parallax</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="ellie.find_sources.crossmatch_multi_to_tic">
+<code class="descname">crossmatch_multi_to_tic</code><span class="sig-paren">(</span><em>list=[]</em><span class="sig-paren">)</span><a class="headerlink" href="#ellie.find_sources.crossmatch_multi_to_tic" title="Permalink to this definition">¶</a></dt>
+<dd><p>Crossmatches file of Gaia IDs to TIC
+Parameters
+———-
+Returns
+———-</p>
+<blockquote>
+<div>table: table of gaia_id, tic_id, ra, dec, delta_pos, gmag, tmag, pmra, pmdec, parallax</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="ellie.find_sources.download_tic_tpf">
+<code class="descname">download_tic_tpf</code><span class="sig-paren">(</span><em>custom=False</em><span class="sig-paren">)</span><a class="headerlink" href="#ellie.find_sources.download_tic_tpf" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function finds the sector, camera, and chip a target is located in
+Downloads the already created stacked cadence FITS file (TPF) and associated</p>
+<blockquote>
+<div>light curve FITS file</div></blockquote>
+<p>Downloads the postcard a target is located in if the target is not in the TIC
+Parameters
+———-</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>custom: Allows the user to ask to create TPF &amp; light curve FITS files</dt>
+<dd>for sources not in the TIC</dd>
+</dl>
+</div></blockquote>
+<blockquote>
+<div>Downloads TPF &amp; light curve FITS files</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="ellie.find_sources.find_by_position">
+<code class="descname">find_by_position</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ellie.find_sources.find_by_position" title="Permalink to this definition">¶</a></dt>
+<dd><p>Allows the user to pass in a file of RA,Dec pairs to be matched in Gaia &amp; TIC
+Parameters
+———-
+Returns
+———-</p>
+<blockquote>
+<div>table: table of gaia_id, tic_id, ra, dec, delta_pos_gaia, delta_pos_tic, gmag, tmag, pmra, pmdec, parallax</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="ellie.find_sources.gaia_pos_by_ID">
+<code class="descname">gaia_pos_by_ID</code><span class="sig-paren">(</span><em>multiSource=None</em><span class="sig-paren">)</span><a class="headerlink" href="#ellie.find_sources.gaia_pos_by_ID" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds the RA,Dec for a given Gaia source_id
+Parameters
+———-
+Returns
+———-</p>
+<blockquote>
+<div>source_id, pos [RA,Dec], gmag, pmra, pmdec, parallax</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="ellie.find_sources.initialize_table">
+<code class="descname">initialize_table</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ellie.find_sources.initialize_table" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a table for crossmatching multiple sources between Gaia and TIC catalogs</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ellie.find_sources.jsonTable">
+<code class="descname">jsonTable</code><span class="sig-paren">(</span><em>jsonObj</em><span class="sig-paren">)</span><a class="headerlink" href="#ellie.find_sources.jsonTable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convets json return type object into an astropy Table
+Parameters
+———-</p>
+<blockquote>
+<div>jsonObj: an object from mastQuery</div></blockquote>
+<blockquote>
+<div>table: astropy table for jsonObj</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="ellie.find_sources.mastQuery">
+<code class="descname">mastQuery</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="headerlink" href="#ellie.find_sources.mastQuery" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sends a request to the MAST server
+Parameters
+———-</p>
+<blockquote>
+<div>request: json string</div></blockquote>
+<blockquote>
+<div>head: headers for response
+content: data for response</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="ellie.find_sources.tic_by_contamination">
+<code class="descname">tic_by_contamination</code><span class="sig-paren">(</span><em>pos</em>, <em>r</em>, <em>contam</em><span class="sig-paren">)</span><a class="headerlink" href="#ellie.find_sources.tic_by_contamination" title="Permalink to this definition">¶</a></dt>
+<dd><p>Allows the user to perform a counts only query or get the usual grid of results. When unsure
+how many results is expcted, it is best to first perform a counts query to avoid memory overflow
+Parameters
+———-</p>
+<blockquote>
+<div>pos: [RA,Dec] pair to be the center of the search
+r: radius of cone search
+contam: [min,max] list of how much allowed contamination</div></blockquote>
+<blockquote>
+<div>json.loads(outString): a table of source(s) in radius</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="ellie.find_sources.tic_pos_by_ID">
+<code class="descname">tic_pos_by_ID</code><span class="sig-paren">(</span><em>multiSource=None</em><span class="sig-paren">)</span><a class="headerlink" href="#ellie.find_sources.tic_pos_by_ID" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds the RA,Dec for a given TIC source_id
+Parameters
+———-</p>
+<blockquote>
+<div>multiSource: used when user passes in a file of TIC IDs to crossmatch</div></blockquote>
+<blockquote>
+<div>source_id, pos [RA,Dec], tmag</div></blockquote>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="ellie.data_products">
+<em class="property">class </em><code class="descclassname">ellie.</code><code class="descname">data_products</code><span class="sig-paren">(</span><em>tic=None</em>, <em>gaia=None</em>, <em>pos=None</em>, <em>dir=None</em><span class="sig-paren">)</span><a class="headerlink" href="#ellie.data_products" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="ellie.data_products.aperture_fitting">
+<code class="descname">aperture_fitting</code><span class="sig-paren">(</span><em>tpf=None</em><span class="sig-paren">)</span><a class="headerlink" href="#ellie.data_products.aperture_fitting" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds the “best” (i.e. the smallest std) light curve for a range of
+sizes and shapes
+Parameters
+———-</p>
+<blockquote>
+<div>sources: list of sources to find apertures for</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="ellie.data_products.custom_aperture">
+<code class="descname">custom_aperture</code><span class="sig-paren">(</span><em>shape=None</em>, <em>r=0.0</em>, <em>l=0.0</em>, <em>w=0.0</em>, <em>t=0.0</em>, <em>pointing=True</em>, <em>jitter=True</em>, <em>roll=True</em>, <em>input_fn=None</em>, <em>pos=[]</em><span class="sig-paren">)</span><a class="headerlink" href="#ellie.data_products.custom_aperture" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Allows the user to input their own aperture of a given shape (either ‘circle’ or</dt>
+<dd>‘rectangle’ are accepted) of a given size {radius of circle: r, length of rectangle: l,
+width of rectangle: w, rotation of rectangle: t}</dd>
+</dl>
+<p>The user can have the aperture not follow the pointing model by setting pointing=False
+The user can determine which kinds of corrections would like to be applied to their light curve</p>
+<blockquote>
+<div>jitter &amp; roll are automatically set to True</div></blockquote>
+<p>Pos is the position given in pixel space</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ellie.data_products.download_ffis">
+<code class="descname">download_ffis</code><span class="sig-paren">(</span><em>sector=None</em>, <em>camera=None</em>, <em>chips=None</em><span class="sig-paren">)</span><a class="headerlink" href="#ellie.data_products.download_ffis" title="Permalink to this definition">¶</a></dt>
+<dd><p>Downloads entire sector of data into .ellie/ffis/sector directory</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ellie.data_products.find_postcard">
+<code class="descname">find_postcard</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ellie.data_products.find_postcard" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds what postcard a source is located in
+Returns
+———-</p>
+<blockquote>
+<div>postcard filename, header of the postcard</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="ellie.data_products.get_header">
+<code class="descname">get_header</code><span class="sig-paren">(</span><em>postcard=None</em><span class="sig-paren">)</span><a class="headerlink" href="#ellie.data_products.get_header" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets postcard header from the website</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ellie.data_products.get_pointing">
+<code class="descname">get_pointing</code><span class="sig-paren">(</span><em>header=None</em>, <em>postcard=None</em><span class="sig-paren">)</span><a class="headerlink" href="#ellie.data_products.get_pointing" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the pointing model from the website</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ellie.data_products.individual_tpf">
+<code class="descname">individual_tpf</code><span class="sig-paren">(</span><em>output_fn=None</em><span class="sig-paren">)</span><a class="headerlink" href="#ellie.data_products.individual_tpf" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Creates a FITS file for a given source that includes:</dt>
+<dd>Extension[0] = header
+Extension[1] = (9x9xn) TPF, where n is the number of cadences in an observing run
+Extension[2] = (3 x n) time, raw flux, systematics corrected flux</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="ellie.data_products.make_postcard">
+<code class="descname">make_postcard</code><span class="sig-paren">(</span><em>camera=None</em>, <em>chip=None</em>, <em>sector=None</em><span class="sig-paren">)</span><a class="headerlink" href="#ellie.data_products.make_postcard" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates 300 x 300 x n postcards, where n is the number of cadences for a given observing run
+Creates a catalog of the associated header with each postcard for use later</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ellie.data_products.make_postcard_catalog">
+<code class="descname">make_postcard_catalog</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ellie.data_products.make_postcard_catalog" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Whenever a postcard is created for a camera-chip pair, a new catalog is created</dt>
+<dd>called: “postcard_{}-{}.txt”.format(camera, chip)</dd>
+<dt>This function will take all of the postcard sub-catalogs and create a main one</dt>
+<dd>for each sector</dd>
+<dt>This file will be stored online and will be called from such, preventing the user</dt>
+<dd>from having to download it onto their personal machine</dd>
+</dl>
+<blockquote>
+<div>postcard.txt: a catalog of header information for each postcard</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="ellie.data_products.plot">
+<code class="descname">plot</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ellie.data_products.plot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Makes a simple plot of the light curve and image of TPF</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ellie.data_products.pointing_model">
+<code class="descname">pointing_model</code><span class="sig-paren">(</span><em>camera=None</em>, <em>chip=None</em>, <em>sector=None</em><span class="sig-paren">)</span><a class="headerlink" href="#ellie.data_products.pointing_model" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates the pointing model for a given camera and chip across all cadences</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ellie.data_products.sort_by_date">
+<code class="descname">sort_by_date</code><span class="sig-paren">(</span><em>camera</em>, <em>chip</em><span class="sig-paren">)</span><a class="headerlink" href="#ellie.data_products.sort_by_date" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sorts FITS files by start date of observation</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ellie.data_products.system_corr">
+<code class="descname">system_corr</code><span class="sig-paren">(</span><em>lc</em>, <em>x_pos</em>, <em>y_pos</em>, <em>jitter=False</em>, <em>roll=False</em><span class="sig-paren">)</span><a class="headerlink" href="#ellie.data_products.system_corr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Allows for systematics correction of a given light curve
+Parameters
+———-</p>
+<blockquote>
+<div>lc: np.array() of light curve values
+x_pos: np.array() of x positions for the centroid
+y_posL np.array() of y positions for the centroid</div></blockquote>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="ellie.visualize">
+<em class="property">class </em><code class="descclassname">ellie.</code><code class="descname">visualize</code><span class="sig-paren">(</span><em>tic=None</em>, <em>gaia=None</em>, <em>input_fn=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#ellie.visualize" title="Permalink to this definition">¶</a></dt>
+<dd><p>The main interface for creating figures, movies, and interactive plots
+Allows the user to have a grand ole time playing with their data!</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>tpf: A FITS file that contains stacked cadences for a single source</dd>
+</dl>
+<dl class="method">
+<dt id="ellie.visualize.click_aperture">
+<code class="descname">click_aperture</code><span class="sig-paren">(</span><em>corrected=False</em><span class="sig-paren">)</span><a class="headerlink" href="#ellie.visualize.click_aperture" title="Permalink to this definition">¶</a></dt>
+<dd><p>Allows the user to click specific pixels they want to create
+a lightcurve for</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ellie.visualize.mark_gaia">
+<code class="descname">mark_gaia</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ellie.visualize.mark_gaia" title="Permalink to this definition">¶</a></dt>
+<dd><p>Allows the user to mark other Gaia sources within a given TPF
+Click on the x’s to reveal the source’s ID and Gmag
+Also cross-matches with TIC and identifies sources in there as well</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ellie.visualize.tpf_movie">
+<code class="descname">tpf_movie</code><span class="sig-paren">(</span><em>output_fn=None</em>, <em>cbar=True</em>, <em>aperture=False</em>, <em>com=False</em>, <em>plot_lc=False</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#ellie.visualize.tpf_movie" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function allows the user to create a TPF movie
+Parameters
+———-</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>cmap: Allows the user to choose the color map for their movie</dt>
+<dd>(Defaults to the only acceptable colormap)</dd>
+<dt>cbar: Allows the user to decide if they want a colorbar for scale</dt>
+<dd>(Defaults to True)</dd>
+<dt>aperture: Allows the user to decide if they want the aperture on</dt>
+<dd>their movie (Defaults to False)</dd>
+<dt>com: Allows the user to decide if they want to see the center of</dt>
+<dd>mass of the target (Defaults to False)</dd>
+<dt>lc: Allows the user to plot the light curve and movement along light curve</dt>
+<dd>with TPF movie (Defaults to False)</dd>
+</dl>
+</div></blockquote>
+<blockquote>
+<div>Creates an MP4 file</div></blockquote>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="Documentation" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Adina Feinstein.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.0.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
